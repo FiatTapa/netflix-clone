@@ -1,0 +1,1 @@
+export const videosPath = '/full_video.mp4'
