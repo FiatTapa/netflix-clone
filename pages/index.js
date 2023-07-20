@@ -278,13 +278,6 @@ export default function Home({ }) {
             </div>
             <div className="flex flex-row justify-between items-center w-screen p-4	">
               <div className="flex flex-row items-center">
-                <div onClick={onPreviousTrackPress}>
-                  <Image
-                    src={currentVideoIndex != 0 ? "/previousIcon.png" : "/previousDisabledIcon.png"}
-                    width={25}
-                    height={25}
-                  />
-                </div>
                 <div className="ml-4" onClick={onPlayPauseVideoPress}>
                   <Image
                     src={isPlaying ? "/pauseIcon.png" : "/playIcon.png"}
@@ -292,11 +285,18 @@ export default function Home({ }) {
                     height={25}
                   />
                 </div>
-                <div className="ml-4" onClick={onNextTrackPress}>
+                <div className="ml-4">
                   <Image
-                    src={currentVideoIndex != videos.length - 1 ? "/nextIcon.png" : "/nextDisabledIcon.png"}
-                    width={25}
-                    height={25}
+                    src={"/backIcon.png"}
+                    width={30}
+                    height={30}
+                  />
+                </div>
+                <div className="ml-4">
+                  <Image
+                    src={"/forwardIcon.png"}
+                    width={30}
+                    height={30}
                   />
                 </div>
                 <div onClick={onMuteUnmutePress} className='ml-4'>
@@ -318,8 +318,6 @@ export default function Home({ }) {
                   // alt="Picture of the author"
                   />
                 </div>
-              </div>
-              <div className="flex flex-row items-center">
                 <div onClick={onCommentPress} className='mr-4'>
                   <Image
                     src={"/commentIcon.png"}
@@ -331,6 +329,33 @@ export default function Home({ }) {
                 <div onClick={onCommunityIconPress} className='mr-4'>
                   <Image
                     src={"/communityIcon.png"}
+                    width={25}
+                    height={25}
+                  // alt="Picture of the author"
+                  />
+                </div>
+              </div>
+              <div className="flex flex-row items-center">
+                <div className='mr-4' onClick={onNextTrackPress}>
+                  <Image
+                    src={"/nextIcon.png"}
+                    width={30}
+                    height={30}
+                  // alt="Picture of the author"
+                  />
+                </div>
+                <div className='mr-4'>
+                  <Image
+                    src={"/copyIcon.png"}
+                    width={25}
+                    height={25}
+                  // alt="Picture of the author"
+                  />
+                </div>
+
+                <div>
+                  <Image
+                    src={"/fullScreenIcon.png"}
                     width={25}
                     height={25}
                   // alt="Picture of the author"
