@@ -1,5 +1,3 @@
-module.exports = {
-    images: {
-        domains: ['images.unsplash.com'],
-    },
+const nextConfig={
+    basePath: '/netflix-clone'
 }
