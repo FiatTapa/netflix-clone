@@ -283,6 +283,7 @@ export default function Home({ }) {
                     src={isPlaying ? "/pauseIcon.png" : "/playIcon.png"}
                     width={25}
                     height={25}
+                    alt={isPlaying ? "pause" : "play"}
                   />
                 </div>
                 <div className="ml-4">
@@ -290,6 +291,7 @@ export default function Home({ }) {
                     src={"/backIcon.png"}
                     width={30}
                     height={30}
+                    alt={'back'}
                   />
                 </div>
                 <div className="ml-4">
@@ -297,6 +299,7 @@ export default function Home({ }) {
                     src={"/forwardIcon.png"}
                     width={30}
                     height={30}
+                    alt={'forward'}
                   />
                 </div>
                 <div onClick={onMuteUnmutePress} className='ml-4'>
@@ -305,6 +308,7 @@ export default function Home({ }) {
                     width={25}
                     height={25}
                     style={{ color: '#ffffff' }}
+                    alt={isMute ? "mute" : "unmute"}
                   />
                 </div>
               </div>
@@ -315,7 +319,7 @@ export default function Home({ }) {
                     width={25}
                     height={25}
                     className="cursor-pointer"
-                  // alt="Picture of the author"
+                    alt={'emoji'}
                   />
                 </div>
                 <div onClick={onCommentPress} className='mr-4'>
@@ -323,7 +327,7 @@ export default function Home({ }) {
                     src={"/commentIcon.png"}
                     width={25}
                     height={25}
-                  // alt="Picture of the author"
+                    alt="comment"
                   />
                 </div>
                 <div onClick={onCommunityIconPress} className='mr-4'>
@@ -331,7 +335,7 @@ export default function Home({ }) {
                     src={"/communityIcon.png"}
                     width={25}
                     height={25}
-                  // alt="Picture of the author"
+                    alt="community"
                   />
                 </div>
               </div>
@@ -341,7 +345,7 @@ export default function Home({ }) {
                     src={"/nextIcon.png"}
                     width={30}
                     height={30}
-                  // alt="Picture of the author"
+                    alt="next icon"
                   />
                 </div>
                 <div className='mr-4'>
@@ -349,7 +353,7 @@ export default function Home({ }) {
                     src={"/copyIcon.png"}
                     width={25}
                     height={25}
-                  // alt="Picture of the author"
+                    alt="copy icon"
                   />
                 </div>
 
@@ -358,7 +362,7 @@ export default function Home({ }) {
                     src={"/fullScreenIcon.png"}
                     width={25}
                     height={25}
-                  // alt="Picture of the author"
+                    alt="fullscreen icon"
                   />
                 </div>
               </div>
