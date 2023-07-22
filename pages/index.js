@@ -356,7 +356,6 @@ export default function Home({ }) {
                     alt="copy icon"
                   />
                 </div>
-
                 <div>
                   <Image
                     src={"./fullScreenIcon.png"}
