@@ -342,7 +342,7 @@ export default function Home({ }) {
               <div className="flex flex-row items-center">
                 <div className='mr-4' onClick={onNextTrackPress}>
                   <Image
-                    src={"/nextIcon.png"}
+                    src={"./nextIcon.png"}
                     width={30}
                     height={30}
                     alt="next icon"
@@ -350,7 +350,7 @@ export default function Home({ }) {
                 </div>
                 <div className='mr-4'>
                   <Image
-                    src={"/copyIcon.png"}
+                    src={"./copyIcon.png"}
                     width={25}
                     height={25}
                     alt="copy icon"
@@ -359,7 +359,7 @@ export default function Home({ }) {
 
                 <div>
                   <Image
-                    src={"/fullScreenIcon.png"}
+                    src={"./fullScreenIcon.png"}
                     width={25}
                     height={25}
                     alt="fullscreen icon"
