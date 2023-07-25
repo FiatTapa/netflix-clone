@@ -74,6 +74,7 @@ export default function Home({ }) {
       if (video) {
         let time = video.duration
         setVideoDuration(time)
+        setIsPlaying(true)
       }
     }, 500)
   }, [])
@@ -182,6 +183,8 @@ export default function Home({ }) {
     setShowCommunityImage(!showCommunityImage)
   }
 
+  console.log('Is Playing is', isPlaying)
+
   return (
     <>
       <Head>
@@ -202,12 +205,38 @@ export default function Home({ }) {
           <source src={videos[currentVideoIndex].path} type="video/mp4" />
         </video>
         {showCommunityImage && (
+          <div style={{ position: 'absolute', zIndex: 9, right: 20, top: window.outerHeight * 0.1, height: 0.6 * window.outerHeight, width: window.innerWidth * 0.25, display: 'flex', flexDirection: 'column', backgroundColor: '#403c3c' }}>
           <Image
-            src={"./communityImage.png"}
-            width={window.innerWidth * 0.3}
-            height={window.outerHeight}
-            style={{ position: 'absolute', zIndex: 99, right: 20, top: 20 }}
-          />
+                src={"./liveStreamImage.png"}
+                width={window.innerWidth * 0.20}
+                height={window.innerHeight * 0.5}
+                style={{ marginTop: '5%', alignSelf: 'center' }}
+              />
+            <Link href="/livevideo">
+              <Image
+                src={"./liveStreamLink.png"}
+                width={window.innerWidth * 0.25}
+                height={window.innerHeight * 0.1}
+                style={{ marginTop: '1%', alignSelf: 'center' }}
+              />
+            </Link>
+            <Link href="/videorecap" style={{ alignSelf: 'center' }}>
+              <Image
+                src={"./videoRecap.png"}
+                width={window.innerWidth * 0.11}
+                height={window.innerHeight * 0.1}
+                style={{ marginTop: '6%', alignSelf: 'center' }}
+              />
+            </Link>
+            <Link href="/blog" style={{ alignSelf: 'center' }}>
+              <Image
+                src={"./blogImage.png"}
+                width={window.innerWidth * 0.11}
+                height={window.innerHeight * 0.1}
+                style={{ marginTop: '6%', alignSelf: 'center' }}
+              />
+            </Link>
+          </div>
         )}
         {showCommentBox && (
           <div className="absolute z-10 right-20 flex top-20 w-60 md:w-15rem bg-[#00000077] flex-col px-4 py-6">
