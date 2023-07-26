@@ -1,4 +1,4 @@
-export const videosPath = './full_video.mp4'
+export const videosPath = '/full_video.mp4'
 
 export const liveVideoPath ='./live_video.mp4'
 
