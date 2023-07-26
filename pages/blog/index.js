@@ -21,7 +21,7 @@ export default function Blog({}) {
     <>
       <Head>
         <title>Blog</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/netflix-clone/favicon.ico" />
       </Head>
       <div className="flex flex-1 flex-col p-10 pt-4">
         <div className="flex flex-row">
@@ -43,7 +43,7 @@ export default function Blog({}) {
         <div className="h-0.5 w-full bg-gray-400 mt-4" />
         <div className="h-96 w-1/2 relative self-center mt-4">
           <Image
-            src={'/blogPicture.png'}
+            src={'/netflix-clone/blogPicture.png'}
             layout="fill"
             style={{ alignSelf: 'center', marginTop: 5 }}
             alt={'play'}
