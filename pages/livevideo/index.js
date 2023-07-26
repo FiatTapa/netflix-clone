@@ -108,12 +108,12 @@ export default function LiveVideo({ }) {
     return timeString;
   }
 
-  const SmileImg = "/emojiIcon.png";
-  const AngryImg = "/angry.png";
-  const emojiLoveImg = "/emoji_love.png";
-  const FireImg = "/fire.png";
-  const ThumbuImg = "/thumbu.png";
-  const cryImg = "/cry.png";
+  const SmileImg = "./emojiIcon.png";
+  const AngryImg = "./angry.png";
+  const emojiLoveImg = "./emoji_love.png";
+  const FireImg = "./fire.png";
+  const ThumbuImg = "./thumbu.png";
+  const cryImg = "./cry.png";
 
   const addEmoji = (emoji) => {
     setEmojis(emoji);
@@ -217,7 +217,7 @@ export default function LiveVideo({ }) {
               <div className="flex flex-row items-center">
                 <div className="ml-4" onClick={onPlayPauseVideoPress}>
                   <Image
-                    src={isPlaying ? "/pauseIcon.png" : "/playIcon.png"}
+                    src={isPlaying ? "./pauseIcon.png" : "./playIcon.png"}
                     width={25}
                     height={25}
                     alt={isPlaying ? "pause" : "play"}
@@ -225,7 +225,7 @@ export default function LiveVideo({ }) {
                 </div>
                 <div className="ml-4">
                   <Image
-                    src={"/backIcon.png"}
+                    src={"./backIcon.png"}
                     width={30}
                     height={30}
                     alt={'back'}
@@ -233,7 +233,7 @@ export default function LiveVideo({ }) {
                 </div>
                 <div className="ml-4">
                   <Image
-                    src={"/forwardIcon.png"}
+                    src={"./forwardIcon.png"}
                     width={30}
                     height={30}
                     alt={'forward'}
@@ -241,7 +241,7 @@ export default function LiveVideo({ }) {
                 </div>
                 <div onClick={onMuteUnmutePress} className='ml-4'>
                   <Image
-                    src={isMute ? "/mute.png" : "/unmute.png"}
+                    src={isMute ? "./mute.png" : "./unmute.png"}
                     width={25}
                     height={25}
                     style={{ color: '#ffffff' }}
@@ -287,7 +287,7 @@ export default function LiveVideo({ }) {
                 </div> */}
                 <div className='mr-4'>
                   <Image
-                    src={"/copyIcon.png"}
+                    src={"./copyIcon.png"}
                     width={25}
                     height={25}
                     alt="copy icon"
@@ -296,7 +296,7 @@ export default function LiveVideo({ }) {
 
                 <div>
                   <Image
-                    src={"/fullScreenIcon.png"}
+                    src={"./fullScreenIcon.png"}
                     width={25}
                     height={25}
                     alt="fullscreen icon"
