@@ -68,16 +68,16 @@ export default function Home({ }) {
   const [showCommunityImage, setShowCommunityImage] = useState(false)
 
 
-  useEffect(() => {
-    setTimeout(() => {
-      let video = videoRef.current
-      if (video) {
-        let time = video.duration
-        setVideoDuration(time)
-        setIsPlaying(true)
-      }
-    }, 500)
-  }, [])
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     let video = videoRef.current
+  //     if (video) {
+  //       let time = video.duration
+  //       setVideoDuration(time)
+  //       setIsPlaying(true)
+  //     }
+  //   }, 900)
+  // }, [])
 
   useEffect(() => {
     if (Math.round(videoDuration - videoElapsed) == 0) {
@@ -126,22 +126,23 @@ export default function Home({ }) {
     return timeString;
   }
 
-  const SmileImg = "./emojiIcon.png";
-  const AngryImg = "./angry.png";
-  const emojiLoveImg = "./emoji_love.png";
-  const FireImg = "./fire.png";
-  const ThumbuImg = "./thumbu.png";
-  const cryImg = "./cry.png";
+  const SmileImg = "/emojiIcon.png";
+  const AngryImg = "/angry.png";
+  const emojiLoveImg = "/emoji_love.png";
+  const FireImg = "/fire.png";
+  const ThumbuImg = "/thumbu.png";
+  const cryImg = "/cry.png";
 
   const addEmoji = (emoji) => {
     setEmojis(emoji);
     setEmojisPopUp(!emojisPopUp)
     setTimeout(() => {
       setEmojis(prevEmojis => prevEmojis === emoji ? null : prevEmojis);
-    }, 6000);
+    }, 2000);
   };
 
   const onCommentPress = () => {
+    setShowCommunityImage(false)
     setShowCommentBox(!showCommentBox)
   }
 
@@ -180,6 +181,7 @@ export default function Home({ }) {
   }
 
   const onCommunityIconPress = () => {
+    setShowCommentBox(false)
     setShowCommunityImage(!showCommunityImage)
   }
 
@@ -201,20 +203,28 @@ export default function Home({ }) {
           //   let time = video.duration
           //   setVideoDuration(time)
           // }
-        }} onPlay={() => { setIsPlaying(true) }}>
+        }} onPlay={() => {
+          let video = videoRef.current
+          if (video) {
+            let time = video.duration
+            setVideoDuration(time)
+            setIsPlaying(true)
+          }
+          // setIsPlaying(true)
+        }}>
           <source src={videos[currentVideoIndex].path} type="video/mp4" />
         </video>
         {showCommunityImage && (
           <div style={{ position: 'absolute', zIndex: 9, right: 20, top: window.outerHeight * 0.1, height: 0.6 * window.outerHeight, width: window.innerWidth * 0.25, display: 'flex', flexDirection: 'column', backgroundColor: '#403c3c' }}>
-          <Image
-                src={"./liveStreamImage.png"}
-                width={window.innerWidth * 0.20}
-                height={window.innerHeight * 0.5}
-                style={{ marginTop: '5%', alignSelf: 'center' }}
-              />
+            <Image
+              src={"/liveStreamImage.png"}
+              width={window.innerWidth * 0.20}
+              height={window.innerHeight * 0.5}
+              style={{ marginTop: '5%', alignSelf: 'center' }}
+            />
             <Link href="/livevideo">
               <Image
-                src={"./liveStreamLink.png"}
+                src={"/liveStreamLink.png"}
                 width={window.innerWidth * 0.25}
                 height={window.innerHeight * 0.1}
                 style={{ marginTop: '1%', alignSelf: 'center' }}
@@ -222,7 +232,7 @@ export default function Home({ }) {
             </Link>
             <Link href="/videorecap" style={{ alignSelf: 'center' }}>
               <Image
-                src={"./videoRecap.png"}
+                src={"/videoRecap.png"}
                 width={window.innerWidth * 0.11}
                 height={window.innerHeight * 0.1}
                 style={{ marginTop: '6%', alignSelf: 'center' }}
@@ -230,7 +240,7 @@ export default function Home({ }) {
             </Link>
             <Link href="/blog" style={{ alignSelf: 'center' }}>
               <Image
-                src={"./blogImage.png"}
+                src={"/blogImage.png"}
                 width={window.innerWidth * 0.11}
                 height={window.innerHeight * 0.1}
                 style={{ marginTop: '6%', alignSelf: 'center' }}
@@ -309,7 +319,7 @@ export default function Home({ }) {
               <div className="flex flex-row items-center">
                 <div className="ml-4" onClick={onPlayPauseVideoPress}>
                   <Image
-                    src={isPlaying ? "./pauseIcon.png" : "./playIcon.png"}
+                    src={isPlaying ? "/pauseIcon.png" : "/playIcon.png"}
                     width={25}
                     height={25}
                     alt={isPlaying ? "pause" : "play"}
@@ -317,7 +327,7 @@ export default function Home({ }) {
                 </div>
                 <div className="ml-4">
                   <Image
-                    src={"./backIcon.png"}
+                    src={"/backIcon.png"}
                     width={30}
                     height={30}
                     alt={'back'}
@@ -325,7 +335,7 @@ export default function Home({ }) {
                 </div>
                 <div className="ml-4">
                   <Image
-                    src={"./forwardIcon.png"}
+                    src={"/forwardIcon.png"}
                     width={30}
                     height={30}
                     alt={'forward'}
@@ -333,7 +343,7 @@ export default function Home({ }) {
                 </div>
                 <div onClick={onMuteUnmutePress} className='ml-4'>
                   <Image
-                    src={isMute ? "./mute.png" : "./unmute.png"}
+                    src={isMute ? "/mute.png" : "/unmute.png"}
                     width={25}
                     height={25}
                     style={{ color: '#ffffff' }}
@@ -353,7 +363,7 @@ export default function Home({ }) {
                 </div>
                 <div onClick={onCommentPress} className='mr-4'>
                   <Image
-                    src={"./commentIcon.png"}
+                    src={"/commentIcon.png"}
                     width={25}
                     height={25}
                     alt="comment"
@@ -361,7 +371,7 @@ export default function Home({ }) {
                 </div>
                 <div onClick={onCommunityIconPress} className='mr-4'>
                   <Image
-                    src={"./communityIcon.png"}
+                    src={"/communityIcon.png"}
                     width={25}
                     height={25}
                     alt="community"
@@ -371,7 +381,7 @@ export default function Home({ }) {
               <div className="flex flex-row items-center">
                 <div className='mr-4' onClick={onNextTrackPress}>
                   <Image
-                    src={"./nextIcon.png"}
+                    src={"/nextIcon.png"}
                     width={30}
                     height={30}
                     alt="next icon"
@@ -379,7 +389,7 @@ export default function Home({ }) {
                 </div>
                 <div className='mr-4'>
                   <Image
-                    src={"./copyIcon.png"}
+                    src={"/copyIcon.png"}
                     width={25}
                     height={25}
                     alt="copy icon"
@@ -388,7 +398,7 @@ export default function Home({ }) {
 
                 <div>
                   <Image
-                    src={"./fullScreenIcon.png"}
+                    src={"/fullScreenIcon.png"}
                     width={25}
                     height={25}
                     alt="fullscreen icon"
