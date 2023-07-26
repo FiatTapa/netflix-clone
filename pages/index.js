@@ -138,7 +138,7 @@ export default function Home({ }) {
     setEmojisPopUp(!emojisPopUp)
     setTimeout(() => {
       setEmojis(prevEmojis => prevEmojis === emoji ? null : prevEmojis);
-    }, 2000);
+    }, 5000);
   };
 
   const onCommentPress = () => {
