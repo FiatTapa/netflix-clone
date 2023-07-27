@@ -106,12 +106,12 @@ export default function LiveVideo({}) {
     return timeString;
   };
 
-  const SmileImg = '/netflix-clone/emojiIcon.png';
-  const AngryImg = '/netflix-clone/angry.png';
-  const emojiLoveImg = '/netflix-clone/emoji_love.png';
-  const FireImg = '/netflix-clone/fire.png';
-  const ThumbuImg = '/netflix-clone/thumbu.png';
-  const cryImg = '/netflix-clone/cry.png';
+  const SmileImg = '/emojiIcon.png';
+  const AngryImg = '/angry.png';
+  const emojiLoveImg = '/emoji_love.png';
+  const FireImg = '/fire.png';
+  const ThumbuImg = '/thumbu.png';
+  const cryImg = '/cry.png';
 
   const addEmoji = (emoji) => {
     setEmojis(emoji);
@@ -169,7 +169,7 @@ export default function LiveVideo({}) {
     <>
       <Head>
         <title>Live Video</title>
-        <link rel="icon" href="/netflix-clone/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="h-full w-full relative">
         <video
@@ -254,11 +254,7 @@ export default function LiveVideo({}) {
               <div className="flex flex-row items-center">
                 <div className="ml-4" onClick={onPlayPauseVideoPress}>
                   <Image
-                    src={
-                      isPlaying
-                        ? '/netflix-clone/pauseIcon.png'
-                        : '/netflix-clone/playIcon.png'
-                    }
+                    src={isPlaying ? '/pauseIcon.png' : '/playIcon.png'}
                     width={25}
                     height={25}
                     alt={isPlaying ? 'pause' : 'play'}
@@ -266,7 +262,7 @@ export default function LiveVideo({}) {
                 </div>
                 <div className="ml-4">
                   <Image
-                    src={'/netflix-clone/backIcon.png'}
+                    src={'/backIcon.png'}
                     width={30}
                     height={30}
                     alt={'back'}
@@ -274,7 +270,7 @@ export default function LiveVideo({}) {
                 </div>
                 <div className="ml-4">
                   <Image
-                    src={'/netflix-clone/forwardIcon.png'}
+                    src={'/forwardIcon.png'}
                     width={30}
                     height={30}
                     alt={'forward'}
@@ -282,11 +278,7 @@ export default function LiveVideo({}) {
                 </div>
                 <div onClick={onMuteUnmutePress} className="ml-4">
                   <Image
-                    src={
-                      isMute
-                        ? '/netflix-clone/mute.png'
-                        : '/netflix-clone/unmute.png'
-                    }
+                    src={isMute ? '/mute.png' : '/unmute.png'}
                     width={25}
                     height={25}
                     style={{ color: '#ffffff' }}
@@ -309,7 +301,7 @@ export default function LiveVideo({}) {
                 </div>
                 {/* <div onClick={onCommentPress} className='mr-4'>
                   <Image
-                    src={"/netflix-clone/commentIcon.png"}
+                    src={"/commentIcon.png"}
                     width={25}
                     height={25}
                     alt="comment"
@@ -317,7 +309,7 @@ export default function LiveVideo({}) {
                 </div>
                 <div onClick={onCommunityIconPress} className='mr-4'>
                   <Image
-                    src={"/netflix-clone/communityIcon.png"}
+                    src={"/communityIcon.png"}
                     width={25}
                     height={25}
                     alt="community"
@@ -327,7 +319,7 @@ export default function LiveVideo({}) {
               <div className="flex flex-row items-center">
                 {/* <div className='mr-4' onClick={onNextTrackPress}>
                   <Image
-                    src={"/netflix-clone/nextIcon.png"}
+                    src={"/nextIcon.png"}
                     width={30}
                     height={30}
                     alt="next icon"
@@ -335,7 +327,7 @@ export default function LiveVideo({}) {
                 </div> */}
                 <div className="mr-4">
                   <Image
-                    src={'/netflix-clone/copyIcon.png'}
+                    src={'/copyIcon.png'}
                     width={25}
                     height={25}
                     alt="copy icon"
@@ -344,7 +336,7 @@ export default function LiveVideo({}) {
 
                 <div>
                   <Image
-                    src={'/netflix-clone/fullScreenIcon.png'}
+                    src={'/fullScreenIcon.png'}
                     width={25}
                     height={25}
                     alt="fullscreen icon"
