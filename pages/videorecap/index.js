@@ -112,6 +112,8 @@ export default function VideoRecap({}) {
   const FireImg = '/fire.png';
   const ThumbuImg = '/thumbu.png';
   const cryImg = '/cry.png';
+  const lolEmoji = '/lolEmoji.png'
+    const wowEmoji = '/wowEmoji.png'
 
   const addEmoji = (emoji) => {
     setEmojis(emoji);
@@ -159,145 +161,101 @@ export default function VideoRecap({}) {
   //   }
   // }
 
-  // const onCommunityIconPress = () => {
-  //   setShowCommunityImage(!showCommunityImage)
-  // }
-
-  return (
-    <>
-      <Head>
-        <title>Video Recap</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <div className="h-full w-full relative">
-        <video
-          ref={videoRef}
-          onTimeUpdate={(e) => {
-            setVideoElapsed(e.target.currentTime);
-            setPercentage(
-              Math.floor((e.target.currentTime / videoDuration) * 100),
-            );
-          }}
-          className="w-full h-screen object-cover"
-          muted={isMute}
-          autoPlay
-          onLoadStart={() => {
-            console.log('Loading start');
-          }}
-          onLoad={() => {}}
-          onPlay={() => {
-            setIsPlaying(true);
-          }}
-        >
-          <source src={videoRecapPath} type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-transparent overflow-hidden">
-          <div className="absolute left-1/3 bottom-[-80px] flex flex-col w-1/5">
-            {emojis && <EmojiList emoji={emojis} />}
-          </div>
-          <div className="absolute bottom-0 left-0 right-0">
-            {emojisPopUp && (
-              <div className="flex justify-center items-center">
-                <div className="bg-gray-900 bg-opacity-60 p-4 rounded-md">
-                  <div className="flex justify-center items-center gap-4">
-                    <ImgBlock
-                      imgSrc={SmileImg}
-                      addEmoji={(srcImg) => addEmoji(srcImg)}
-                    />
-                    <ImgBlock
-                      imgSrc={AngryImg}
-                      addEmoji={(srcImg) => addEmoji(srcImg)}
-                    />
-                    <ImgBlock
-                      imgSrc={emojiLoveImg}
-                      addEmoji={(srcImg) => addEmoji(srcImg)}
-                    />
-                    <ImgBlock
-                      imgSrc={FireImg}
-                      addEmoji={(srcImg) => addEmoji(srcImg)}
-                    />
-                    <ImgBlock
-                      imgSrc={ThumbuImg}
-                      addEmoji={(srcImg) => addEmoji(srcImg)}
-                    />
-                    <ImgBlock
-                      imgSrc={cryImg}
-                      addEmoji={(srcImg) => addEmoji(srcImg)}
-                    />
-                  </div>
-                </div>
-              </div>
-            )}
-            <div className="w-full flex flex-row items-center px-2">
-              <span className="text-xs font-sans tracking-wide font-medium text-slate-200">
-                {getTimeFromSeconds(videoElapsed)}
-              </span>
-              <div className="w-full flex flex-col mx-3 z-50">
-                <input
-                  onChange={onChange}
-                  type="range"
-                  className={`w-full h-1 rounded-lg cursor-pointer range-sm outline-none slider-thumb accent=[#E50914]`}
-                  style={{
-                    background: `linear-gradient(to right, #E50914 0%, #E50914 ${percentage}%, #FFF ${percentage}%, #FFF 100%)`,
-                  }}
-                  step=".1"
-                  value={percentage}
-                />
-              </div>
-              <span className="amplitude-duration-time text-xs font-sans tracking-wide font-medium text-slate-200">
-                {getTimeFromSeconds(videoDuration)}
-              </span>
-            </div>
-            <div className="flex flex-row justify-between items-center w-screen p-4	">
-              <div className="flex flex-row items-center">
-                <div className="ml-4" onClick={onPlayPauseVideoPress}>
-                  <Image
-                    src={isPlaying ? '/pauseIcon.png' : '/playIcon.png'}
-                    width={25}
-                    height={25}
-                    alt={isPlaying ? 'pause' : 'play'}
-                  />
-                </div>
-                <div className="ml-4">
-                  <Image
-                    src={'/backIcon.png'}
-                    width={30}
-                    height={30}
-                    alt={'back'}
-                  />
-                </div>
-                <div className="ml-4">
-                  <Image
-                    src={'/forwardIcon.png'}
-                    width={30}
-                    height={30}
-                    alt={'forward'}
-                  />
-                </div>
-                <div onClick={onMuteUnmutePress} className="ml-4">
-                  <Image
-                    src={isMute ? '/mute.png' : '/unmute.png'}
-                    width={25}
-                    height={25}
-                    style={{ color: '#ffffff' }}
-                    alt={isMute ? 'mute' : 'unmute'}
-                  />
-                </div>
-              </div>
-              <div className="flex flex-row items-center">
-                <div
-                  onClick={() => setEmojisPopUp(!emojisPopUp)}
-                  className="mr-4"
-                >
-                  <Image
-                    src={SmileImg}
-                    width={25}
-                    height={25}
-                    className="cursor-pointer"
-                    alt={'emoji'}
-                  />
-                </div>
-                {/* <div onClick={onCommentPress} className='mr-4'>
+    return (
+        <>
+            <Head>
+                <title>Video Recap</title>
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
+            <div className="h-full w-full relative">
+                <video ref={videoRef} onTimeUpdate={(e) => {
+                    setVideoElapsed(e.target.currentTime)
+                    setPercentage(Math.floor((e.target.currentTime / videoDuration) * 100))
+                }} className='w-full h-screen object-cover' muted={isMute} autoPlay onLoadStart={() => { console.log('Loading start') }} onLoad={() => {
+                }} onPlay={() => { setIsPlaying(true) }}>
+                    <source src={videoRecapPath} type="video/mp4" />
+                </video>
+                <div className="absolute inset-0 bg-transparent overflow-hidden">
+                    <div className="absolute left-1/3 bottom-[-80px] flex flex-col w-1/5">
+                        {emojis && <EmojiList emoji={emojis} />}
+                    </div>
+                    <div className="absolute bottom-0 left-0 right-0">
+                        {emojisPopUp &&
+                            <div className="flex justify-center items-center">
+                                <div className="bg-gray-900 bg-opacity-60 p-4 rounded-md">
+                                    <div className="flex justify-center items-center gap-4">
+                                        <ImgBlock imgSrc={SmileImg} addEmoji={(srcImg) => addEmoji(srcImg)} />
+                                        <ImgBlock imgSrc={AngryImg} addEmoji={(srcImg) => addEmoji(srcImg)} />
+                                        <ImgBlock imgSrc={emojiLoveImg} addEmoji={(srcImg) => addEmoji(srcImg)} />
+                                        <ImgBlock imgSrc={FireImg} addEmoji={(srcImg) => addEmoji(srcImg)} />
+                                        <ImgBlock imgSrc={ThumbuImg} addEmoji={(srcImg) => addEmoji(srcImg)} />
+                                        <ImgBlock imgSrc={cryImg} addEmoji={(srcImg) => addEmoji(srcImg)} />
+                                        <ImgBlock imgSrc={lolEmoji} addEmoji={(srcImg) => addEmoji(srcImg)} />
+                                        <ImgBlock imgSrc={wowEmoji} addEmoji={(srcImg) => addEmoji(srcImg)} />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <div className="w-full flex flex-row items-center px-2">
+                            <span className="text-xs font-sans tracking-wide font-medium text-slate-200">{getTimeFromSeconds(videoElapsed)}</span>
+                            <div className="w-full flex flex-col mx-3 z-50">
+                                <input onChange={onChange} type="range"
+                                    className={`w-full h-1 rounded-lg cursor-pointer range-sm outline-none slider-thumb accent=[#E50914]`} style={{
+                                        background: `linear-gradient(to right, #E50914 0%, #E50914 ${percentage}%, #FFF ${percentage}%, #FFF 100%)`
+                                    }}
+                                    step=".1"
+                                    value={percentage}
+                                />
+                            </div>
+                            <span className="amplitude-duration-time text-xs font-sans tracking-wide font-medium text-slate-200">{getTimeFromSeconds(videoDuration)}</span>
+                        </div>
+                        <div className="flex flex-row justify-between items-center w-screen p-4	">
+                            <div className="flex flex-row items-center">
+                                <div className="ml-4" onClick={onPlayPauseVideoPress}>
+                                    <Image
+                                        src={isPlaying ? "./pauseIcon.png" : "./playIcon.png"}
+                                        width={25}
+                                        height={25}
+                                        alt={isPlaying ? "pause" : "play"}
+                                    />
+                                </div>
+                                <div className="ml-4">
+                                    <Image
+                                        src={"./backIcon.png"}
+                                        width={30}
+                                        height={30}
+                                        alt={'back'}
+                                    />
+                                </div>
+                                <div className="ml-4">
+                                    <Image
+                                        src={"./forwardIcon.png"}
+                                        width={30}
+                                        height={30}
+                                        alt={'forward'}
+                                    />
+                                </div>
+                                <div onClick={onMuteUnmutePress} className='ml-4'>
+                                    <Image
+                                        src={isMute ? "./mute.png" : "./unmute.png"}
+                                        width={25}
+                                        height={25}
+                                        style={{ color: '#ffffff' }}
+                                        alt={isMute ? "mute" : "unmute"}
+                                    />
+                                </div>
+                            </div>
+                            <div className="flex flex-row items-center">
+                                <div onClick={() => setEmojisPopUp(!emojisPopUp)} className='mr-4'>
+                                    <Image
+                                        src={SmileImg}
+                                        width={25}
+                                        height={25}
+                                        className="cursor-pointer"
+                                        alt={'emoji'}
+                                    />
+                                </div>
+                                {/* <div onClick={onCommentPress} className='mr-4'>
                   <Image
                     src={"/commentIcon.png"}
                     width={25}

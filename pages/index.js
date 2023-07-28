@@ -130,12 +130,15 @@ export default function Home({}) {
     return timeString;
   };
 
-  const SmileImg = '/emojiIcon.png';
-  const AngryImg = '/angry.png';
-  const emojiLoveImg = '/emoji_love.png';
-  const FireImg = '/fire.png';
-  const ThumbuImg = '/thumbu.png';
-  const cryImg = '/cry.png';
+  const SmileImg = "/emojiIcon.png";
+  const AngryImg = "/angry.png";
+  const emojiLoveImg = "/emoji_love.png";
+  const FireImg = "/fire.png";
+  const ThumbuImg = "/thumbu.png";
+  const cryImg = "/cry.png";
+  const lolEmoji = '/lolEmoji.png'
+  const wowEmoji = '/wowEmoji.png'
+  
 
   const addEmoji = (emoji) => {
     setEmojis(emoji);
@@ -336,30 +339,14 @@ export default function Home({}) {
               <div className="flex justify-center items-center">
                 <div className="bg-gray-900 bg-opacity-60 p-4 rounded-md">
                   <div className="flex justify-center items-center gap-4">
-                    <ImgBlock
-                      imgSrc={SmileImg}
-                      addEmoji={(srcImg) => addEmoji(srcImg)}
-                    />
-                    <ImgBlock
-                      imgSrc={AngryImg}
-                      addEmoji={(srcImg) => addEmoji(srcImg)}
-                    />
-                    <ImgBlock
-                      imgSrc={emojiLoveImg}
-                      addEmoji={(srcImg) => addEmoji(srcImg)}
-                    />
-                    <ImgBlock
-                      imgSrc={FireImg}
-                      addEmoji={(srcImg) => addEmoji(srcImg)}
-                    />
-                    <ImgBlock
-                      imgSrc={ThumbuImg}
-                      addEmoji={(srcImg) => addEmoji(srcImg)}
-                    />
-                    <ImgBlock
-                      imgSrc={cryImg}
-                      addEmoji={(srcImg) => addEmoji(srcImg)}
-                    />
+                    <ImgBlock imgSrc={SmileImg} addEmoji={(srcImg) => addEmoji(srcImg)} />
+                    <ImgBlock imgSrc={AngryImg} addEmoji={(srcImg) => addEmoji(srcImg)} />
+                    <ImgBlock imgSrc={emojiLoveImg} addEmoji={(srcImg) => addEmoji(srcImg)} />
+                    <ImgBlock imgSrc={FireImg} addEmoji={(srcImg) => addEmoji(srcImg)} />
+                    <ImgBlock imgSrc={ThumbuImg} addEmoji={(srcImg) => addEmoji(srcImg)} />
+                    <ImgBlock imgSrc={cryImg} addEmoji={(srcImg) => addEmoji(srcImg)} />
+                    <ImgBlock imgSrc={lolEmoji} addEmoji={(srcImg) => addEmoji(srcImg)} />
+                    <ImgBlock imgSrc={wowEmoji} addEmoji={(srcImg) => addEmoji(srcImg)} />
                   </div>
                 </div>
               </div>
