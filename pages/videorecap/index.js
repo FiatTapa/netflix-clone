@@ -114,6 +114,10 @@ export default function VideoRecap({ }) {
     const FireImg = "./fire.png";
     const ThumbuImg = "./thumbu.png";
     const cryImg = "./cry.png";
+    const lolEmoji = './lolEmoji.png'
+    const wowEmoji = './wowEmoji.png'
+    
+
 
     const addEmoji = (emoji) => {
         setEmojis(emoji);
@@ -194,6 +198,8 @@ export default function VideoRecap({ }) {
                                         <ImgBlock imgSrc={FireImg} addEmoji={(srcImg) => addEmoji(srcImg)} />
                                         <ImgBlock imgSrc={ThumbuImg} addEmoji={(srcImg) => addEmoji(srcImg)} />
                                         <ImgBlock imgSrc={cryImg} addEmoji={(srcImg) => addEmoji(srcImg)} />
+                                        <ImgBlock imgSrc={lolEmoji} addEmoji={(srcImg) => addEmoji(srcImg)} />
+                                        <ImgBlock imgSrc={wowEmoji} addEmoji={(srcImg) => addEmoji(srcImg)} />
                                     </div>
                                 </div>
                             </div>
