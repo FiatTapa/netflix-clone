@@ -1,173 +1,165 @@
-import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import { videoRecapPath, videosPath } from "../../videos";
-import EmojiList from "../../components/EmojiAnimation";
+import Head from 'next/head';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
+import { videoRecapPath, videosPath } from '../../videos';
+import EmojiList from '../../components/EmojiAnimation';
 
 const videos = {
-    id: 0,
-    path: videosPath
-}
+  id: 0,
+  path: videosPath,
+};
 
+export default function VideoRecap({}) {
+  const videoRef = useRef(null);
 
-export default function VideoRecap({ }) {
+  const [isMute, setIsMute] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(true);
 
-    const videoRef = useRef(null)
+  const [videoDuration, setVideoDuration] = useState(0);
+  const [videoElapsed, setVideoElapsed] = useState(0);
+  const [percentage, setPercentage] = useState(0);
+  const [emojis, setEmojis] = useState();
+  const [emojisPopUp, setEmojisPopUp] = useState(false);
 
-    const [isMute, setIsMute] = useState(true)
-    const [isPlaying, setIsPlaying] = useState(true)
+  // const [showCommentBox, setShowCommentBox] = useState(false)
+  // const [currentComment, setCurrentComment] = useState(objComment);
+  // const [allComments, setAllComments] = useState([{
+  //   userName: 'MorganM',
+  //   time: '5 days ago',
+  //   comment: 'OMG - Love Mary!'
+  // },
+  // {
+  //   userName: 'peachypeachyGirl',
+  //   time: '5 days ago',
+  //   comment: 'The house looks amazing! So amazing to see her getting such big listing! You go Mary!'
+  // },
+  // {
+  //   userName: 'Stacy Park',
+  //   time: '7 days ago',
+  //   comment: "She's my favorite! Mary is the only reasonable person here this season! Can't wait to see how she manages the office this season!"
+  // },
+  // {
+  //   userName: 'CharlieG',
+  //   time: '7 days ago',
+  //   comment: "You go Mary! <3 <3 <3",
+  // }]);
 
-    const [videoDuration, setVideoDuration] = useState(0)
-    const [videoElapsed, setVideoElapsed] = useState(0)
-    const [percentage, setPercentage] = useState(0)
-    const [emojis, setEmojis] = useState();
-    const [emojisPopUp, setEmojisPopUp] = useState(false);
+  // const [showCommunityImage, setShowCommunityImage] = useState(false)
 
-    // const [showCommentBox, setShowCommentBox] = useState(false)
-    // const [currentComment, setCurrentComment] = useState(objComment);
-    // const [allComments, setAllComments] = useState([{
-    //   userName: 'MorganM',
-    //   time: '5 days ago',
-    //   comment: 'OMG - Love Mary!'
-    // },
-    // {
-    //   userName: 'peachypeachyGirl',
-    //   time: '5 days ago',
-    //   comment: 'The house looks amazing! So amazing to see her getting such big listing! You go Mary!'
-    // },
-    // {
-    //   userName: 'Stacy Park',
-    //   time: '7 days ago',
-    //   comment: "She's my favorite! Mary is the only reasonable person here this season! Can't wait to see how she manages the office this season!"
-    // },
-    // {
-    //   userName: 'CharlieG',
-    //   time: '7 days ago',
-    //   comment: "You go Mary! <3 <3 <3",
-    // }]);
+  useEffect(() => {
+    setTimeout(() => {
+      let video = videoRef.current;
+      if (video) {
+        let time = video.duration;
+        setVideoDuration(time);
+        setIsPlaying(true);
+      }
+    }, 500);
+  }, []);
 
-    // const [showCommunityImage, setShowCommunityImage] = useState(false)
-
-
-    useEffect(() => {
-        setTimeout(() => {
-            let video = videoRef.current
-            if (video) {
-                let time = video.duration
-                setVideoDuration(time)
-                setIsPlaying(true)
-            }
-        }, 500)
-    }, [])
-
-    useEffect(() => {
-        if (Math.round(videoDuration - videoElapsed) == 0) {
-            setIsPlaying(false)
-        }
-    }, [videoDuration, videoElapsed])
-
-    // useEffect(() => {
-    //   // Scroll to the last comment when the allComments array updates
-    //   if (showCommentBox) {
-    //     const commentContainer = document.getElementById('comment-container');
-    //     commentContainer.scrollTop = commentContainer.scrollHeight;
-    //   }
-    // }, [allComments, showCommentBox]);
-
-    const onPlayPauseVideoPress = () => {
-        let video = videoRef.current
-        if (video) {
-            setIsPlaying(!isPlaying)
-            if (video.paused)
-                video.play();
-            else {
-                video.pause();
-            }
-        }
+  useEffect(() => {
+    if (Math.round(videoDuration - videoElapsed) == 0) {
+      setIsPlaying(false);
     }
+  }, [videoDuration, videoElapsed]);
 
-    const onMuteUnmutePress = () => {
-        setIsMute(!isMute)
+  // useEffect(() => {
+  //   // Scroll to the last comment when the allComments array updates
+  //   if (showCommentBox) {
+  //     const commentContainer = document.getElementById('comment-container');
+  //     commentContainer.scrollTop = commentContainer.scrollHeight;
+  //   }
+  // }, [allComments, showCommentBox]);
+
+  const onPlayPauseVideoPress = () => {
+    let video = videoRef.current;
+    if (video) {
+      setIsPlaying(!isPlaying);
+      if (video.paused) video.play();
+      else {
+        video.pause();
+      }
     }
+  };
 
-    const onChange = (e) => {
-        const video = videoRef.current
-        let time = (video.duration / 100) * e.target.value
-        video.currentTime = time;
-        setVideoElapsed(time)
-        setPercentage(e.target.value)
-        setIsPlaying(isPlaying)
-    }
+  const onMuteUnmutePress = () => {
+    setIsMute(!isMute);
+  };
 
-    const getTimeFromSeconds = (time) => {
-        let minutes = (Math.floor(time / 60));
-        let seconds = Math.round(time - (minutes * 60))
-        let timeString = minutes.toString().padStart(2, '0') + ':' +
-            seconds.toString().padStart(2, '0');
-        return timeString;
-    }
+  const onChange = (e) => {
+    const video = videoRef.current;
+    let time = (video.duration / 100) * e.target.value;
+    video.currentTime = time;
+    setVideoElapsed(time);
+    setPercentage(e.target.value);
+    setIsPlaying(isPlaying);
+  };
 
-    const SmileImg = "./emojiIcon.png";
-    const AngryImg = "./angry.png";
-    const emojiLoveImg = "./emoji_love.png";
-    const FireImg = "./fire.png";
-    const ThumbuImg = "./thumbu.png";
-    const cryImg = "./cry.png";
-    const lolEmoji = './lolEmoji.png'
-    const wowEmoji = './wowEmoji.png'
-    
+  const getTimeFromSeconds = (time) => {
+    let minutes = Math.floor(time / 60);
+    let seconds = Math.round(time - minutes * 60);
+    let timeString =
+      minutes.toString().padStart(2, '0') +
+      ':' +
+      seconds.toString().padStart(2, '0');
+    return timeString;
+  };
 
+  const SmileImg = '/emojiIcon.png';
+  const AngryImg = '/angry.png';
+  const emojiLoveImg = '/emoji_love.png';
+  const FireImg = '/fire.png';
+  const ThumbuImg = '/thumbu.png';
+  const cryImg = '/cry.png';
+  const lolEmoji = '/lolEmoji.png'
+    const wowEmoji = '/wowEmoji.png'
 
-    const addEmoji = (emoji) => {
-        setEmojis(emoji);
-        setEmojisPopUp(!emojisPopUp)
-        setTimeout(() => {
-            setEmojis(prevEmojis => prevEmojis === emoji ? null : prevEmojis);
-        }, 6000);
-    };
+  const addEmoji = (emoji) => {
+    setEmojis(emoji);
+    setEmojisPopUp(!emojisPopUp);
+    setTimeout(() => {
+      setEmojis((prevEmojis) => (prevEmojis === emoji ? null : prevEmojis));
+    }, 6000);
+  };
 
-    // const onCommentPress = () => {
-    //   setShowCommentBox(!showCommentBox)
-    // }
+  // const onCommentPress = () => {
+  //   setShowCommentBox(!showCommentBox)
+  // }
 
-    // const onCommentChange = (e) => {
-    //   setCurrentComment((prevState) => ({
-    //     ...prevState,
-    //     comment: e.target.value,
-    //   }));
-    // };
+  // const onCommentChange = (e) => {
+  //   setCurrentComment((prevState) => ({
+  //     ...prevState,
+  //     comment: e.target.value,
+  //   }));
+  // };
 
-    // const onCommentSubmit = () => {
-    //   if (currentComment.comment.trim() !== '') {
-    //     setAllComments((prevState) => [...prevState, currentComment]);
-    //     setCurrentComment(objComment);
-    //   }
-    // };
+  // const onCommentSubmit = () => {
+  //   if (currentComment.comment.trim() !== '') {
+  //     setAllComments((prevState) => [...prevState, currentComment]);
+  //     setCurrentComment(objComment);
+  //   }
+  // };
 
-    // const onNextTrackPress = () => {
-    //   if (currentVideoIndex != videos.length - 1) {
-    //     const video = videoRef.current
-    //     let currentPlayingIndex = currentVideoIndex
-    //     currentPlayingIndex = currentPlayingIndex + 1
-    //     setCurrentVideoIndex(currentPlayingIndex)
-    //     video.currentTime = 0
-    //   }
-    // }
+  // const onNextTrackPress = () => {
+  //   if (currentVideoIndex != videos.length - 1) {
+  //     const video = videoRef.current
+  //     let currentPlayingIndex = currentVideoIndex
+  //     currentPlayingIndex = currentPlayingIndex + 1
+  //     setCurrentVideoIndex(currentPlayingIndex)
+  //     video.currentTime = 0
+  //   }
+  // }
 
-    // const onPreviousTrackPress = () => {
-    //   if (currentVideoIndex != 0) {
-    //     const video = videoRef.current
-    //     let currentPlayingIndex = currentVideoIndex
-    //     currentPlayingIndex = currentPlayingIndex - 1
-    //     setCurrentVideoIndex(currentPlayingIndex)
-    //     video.currentTime = 0
-    //   }
-    // }
-
-    // const onCommunityIconPress = () => {
-    //   setShowCommunityImage(!showCommunityImage)
-    // }
+  // const onPreviousTrackPress = () => {
+  //   if (currentVideoIndex != 0) {
+  //     const video = videoRef.current
+  //     let currentPlayingIndex = currentVideoIndex
+  //     currentPlayingIndex = currentPlayingIndex - 1
+  //     setCurrentVideoIndex(currentPlayingIndex)
+  //     video.currentTime = 0
+  //   }
+  // }
 
     return (
         <>
@@ -279,9 +271,9 @@ export default function VideoRecap({ }) {
                     alt="community"
                   />
                 </div> */}
-                            </div>
-                            <div className="flex flex-row items-center">
-                                {/* <div className='mr-4' onClick={onNextTrackPress}>
+              </div>
+              <div className="flex flex-row items-center">
+                {/* <div className='mr-4' onClick={onNextTrackPress}>
                   <Image
                     src={"/nextIcon.png"}
                     width={30}
@@ -289,42 +281,39 @@ export default function VideoRecap({ }) {
                     alt="next icon"
                   />
                 </div> */}
-                                <div className='mr-4'>
-                                    <Image
-                                        src={"./copyIcon.png"}
-                                        width={25}
-                                        height={25}
-                                        alt="copy icon"
-                                    />
-                                </div>
-
-                                <div>
-                                    <Image
-                                        src={"./fullScreenIcon.png"}
-                                        width={25}
-                                        height={25}
-                                        alt="fullscreen icon"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div className="mr-4">
+                  <Image
+                    src={'/copyIcon.png'}
+                    width={25}
+                    height={25}
+                    alt="copy icon"
+                  />
                 </div>
+
+                <div>
+                  <Image
+                    src={'/fullScreenIcon.png'}
+                    width={25}
+                    height={25}
+                    alt="fullscreen icon"
+                  />
+                </div>
+              </div>
             </div>
-        </>
-    );
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
 
 const ImgBlock = ({ imgSrc, addEmoji }) => {
-    const handleClickEmoji = () => {
-        addEmoji(imgSrc)
-    }
-    return <div className="cursor-pointer" onClick={handleClickEmoji}>
-        <Image
-            src={imgSrc}
-            width={25}
-            height={25}
-            className="cursor-pointer"
-        />
+  const handleClickEmoji = () => {
+    addEmoji(imgSrc);
+  };
+  return (
+    <div className="cursor-pointer" onClick={handleClickEmoji}>
+      <Image src={imgSrc} width={25} height={25} className="cursor-pointer" />
     </div>
-}
+  );
+};

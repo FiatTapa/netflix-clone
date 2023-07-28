@@ -1,26 +1,24 @@
-import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import { liveVideoPath, videosPath } from "../../videos";
-import EmojiList from "../../components/EmojiAnimation";
+import Head from 'next/head';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
+import { liveVideoPath, videosPath } from '../../videos';
+import EmojiList from '../../components/EmojiAnimation';
 
 const videos = {
   id: 0,
-  path: liveVideoPath
-}
+  path: liveVideoPath,
+};
 
+export default function LiveVideo({}) {
+  const videoRef = useRef(null);
 
-export default function LiveVideo({ }) {
+  const [isMute, setIsMute] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(true);
 
-  const videoRef = useRef(null)
-
-  const [isMute, setIsMute] = useState(true)
-  const [isPlaying, setIsPlaying] = useState(true)
-
-  const [videoDuration, setVideoDuration] = useState(0)
-  const [videoElapsed, setVideoElapsed] = useState(0)
-  const [percentage, setPercentage] = useState(0)
+  const [videoDuration, setVideoDuration] = useState(0);
+  const [videoElapsed, setVideoElapsed] = useState(0);
+  const [percentage, setPercentage] = useState(0);
   const [emojis, setEmojis] = useState();
   const [emojisPopUp, setEmojisPopUp] = useState(false);
 
@@ -49,23 +47,22 @@ export default function LiveVideo({ }) {
 
   // const [showCommunityImage, setShowCommunityImage] = useState(false)
 
-
   useEffect(() => {
     setTimeout(() => {
-      let video = videoRef.current
+      let video = videoRef.current;
       if (video) {
-        let time = video.duration
-        setVideoDuration(time)
-        setIsPlaying(true)
+        let time = video.duration;
+        setVideoDuration(time);
+        setIsPlaying(true);
       }
-    }, 500)
-  }, [])
+    }, 500);
+  }, []);
 
   useEffect(() => {
     if (Math.round(videoDuration - videoElapsed) == 0) {
-      setIsPlaying(false)
+      setIsPlaying(false);
     }
-  }, [videoDuration, videoElapsed])
+  }, [videoDuration, videoElapsed]);
 
   // useEffect(() => {
   //   // Scroll to the last comment when the allComments array updates
@@ -76,52 +73,53 @@ export default function LiveVideo({ }) {
   // }, [allComments, showCommentBox]);
 
   const onPlayPauseVideoPress = () => {
-    let video = videoRef.current
+    let video = videoRef.current;
     if (video) {
-      setIsPlaying(!isPlaying)
-      if (video.paused)
-        video.play();
+      setIsPlaying(!isPlaying);
+      if (video.paused) video.play();
       else {
         video.pause();
       }
     }
-  }
+  };
 
   const onMuteUnmutePress = () => {
-    setIsMute(!isMute)
-  }
+    setIsMute(!isMute);
+  };
 
   const onChange = (e) => {
-    const video = videoRef.current
-    let time = (video.duration / 100) * e.target.value
+    const video = videoRef.current;
+    let time = (video.duration / 100) * e.target.value;
     video.currentTime = time;
-    setVideoElapsed(time)
-    setPercentage(e.target.value)
-    setIsPlaying(isPlaying)
-  }
+    setVideoElapsed(time);
+    setPercentage(e.target.value);
+    setIsPlaying(isPlaying);
+  };
 
   const getTimeFromSeconds = (time) => {
-    let minutes = (Math.floor(time / 60));
-    let seconds = Math.round(time - (minutes * 60))
-    let timeString = minutes.toString().padStart(2, '0') + ':' +
+    let minutes = Math.floor(time / 60);
+    let seconds = Math.round(time - minutes * 60);
+    let timeString =
+      minutes.toString().padStart(2, '0') +
+      ':' +
       seconds.toString().padStart(2, '0');
     return timeString;
-  }
+  };
 
-  const SmileImg = "./emojiIcon.png";
-  const AngryImg = "./angry.png";
-  const emojiLoveImg = "./emoji_love.png";
-  const FireImg = "./fire.png";
-  const ThumbuImg = "./thumbu.png";
-  const cryImg = "./cry.png";
-  const lolEmoji = './lolEmoji.png'
-  const wowEmoji = './wowEmoji.png'
+  const SmileImg = "/emojiIcon.png";
+  const AngryImg = "/angry.png";
+  const emojiLoveImg = "/emoji_love.png";
+  const FireImg = "/fire.png";
+  const ThumbuImg = "/thumbu.png";
+  const cryImg = "/cry.png";
+  const lolEmoji = '/lolEmoji.png'
+  const wowEmoji = '/wowEmoji.png'
 
   const addEmoji = (emoji) => {
     setEmojis(emoji);
-    setEmojisPopUp(!emojisPopUp)
+    setEmojisPopUp(!emojisPopUp);
     setTimeout(() => {
-      setEmojis(prevEmojis => prevEmojis === emoji ? null : prevEmojis);
+      setEmojis((prevEmojis) => (prevEmojis === emoji ? null : prevEmojis));
     }, 2000);
   };
 
@@ -176,11 +174,25 @@ export default function LiveVideo({ }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="h-full w-full relative">
-        <video ref={videoRef} onTimeUpdate={(e) => {
-          setVideoElapsed(e.target.currentTime)
-          setPercentage(Math.floor((e.target.currentTime / videoDuration) * 100))
-        }} className='w-full h-screen object-cover' muted={isMute} autoPlay onLoadStart={() => { console.log('Loading start') }} onLoad={() => {
-        }} onPlay={() => { setIsPlaying(true) }}>
+        <video
+          ref={videoRef}
+          onTimeUpdate={(e) => {
+            setVideoElapsed(e.target.currentTime);
+            setPercentage(
+              Math.floor((e.target.currentTime / videoDuration) * 100),
+            );
+          }}
+          className="w-full h-screen object-cover"
+          muted={isMute}
+          autoPlay
+          onLoadStart={() => {
+            console.log('Loading start');
+          }}
+          onLoad={() => {}}
+          onPlay={() => {
+            setIsPlaying(true);
+          }}
+        >
           <source src={liveVideoPath} type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-transparent overflow-hidden">
@@ -188,7 +200,7 @@ export default function LiveVideo({ }) {
             {emojis && <EmojiList emoji={emojis} />}
           </div>
           <div className="absolute bottom-0 left-0 right-0">
-            {emojisPopUp &&
+            {emojisPopUp && (
               <div className="flex justify-center items-center">
                 <div className="bg-gray-900 bg-opacity-60 p-4 rounded-md">
                   <div className="flex justify-center items-center gap-4">
@@ -203,33 +215,40 @@ export default function LiveVideo({ }) {
                   </div>
                 </div>
               </div>
-            }
+            )}
             <div className="w-full flex flex-row items-center px-2">
-              <span className="text-xs font-sans tracking-wide font-medium text-slate-200">{getTimeFromSeconds(videoElapsed)}</span>
+              <span className="text-xs font-sans tracking-wide font-medium text-slate-200">
+                {getTimeFromSeconds(videoElapsed)}
+              </span>
               <div className="w-full flex flex-col mx-3 z-50">
-                <input onChange={onChange} type="range"
-                  className={`w-full h-1 rounded-lg cursor-pointer range-sm outline-none slider-thumb accent=[#E50914]`} style={{
-                    background: `linear-gradient(to right, #E50914 0%, #E50914 ${percentage}%, #FFF ${percentage}%, #FFF 100%)`
+                <input
+                  onChange={onChange}
+                  type="range"
+                  className={`w-full h-1 rounded-lg cursor-pointer range-sm outline-none slider-thumb accent=[#E50914]`}
+                  style={{
+                    background: `linear-gradient(to right, #E50914 0%, #E50914 ${percentage}%, #FFF ${percentage}%, #FFF 100%)`,
                   }}
                   step=".1"
                   value={percentage}
                 />
               </div>
-              <span className="amplitude-duration-time text-xs font-sans tracking-wide font-medium text-slate-200">{getTimeFromSeconds(videoDuration)}</span>
+              <span className="amplitude-duration-time text-xs font-sans tracking-wide font-medium text-slate-200">
+                {getTimeFromSeconds(videoDuration)}
+              </span>
             </div>
             <div className="flex flex-row justify-between items-center w-screen p-4	">
               <div className="flex flex-row items-center">
                 <div className="ml-4" onClick={onPlayPauseVideoPress}>
                   <Image
-                    src={isPlaying ? "./pauseIcon.png" : "./playIcon.png"}
+                    src={isPlaying ? '/pauseIcon.png' : '/playIcon.png'}
                     width={25}
                     height={25}
-                    alt={isPlaying ? "pause" : "play"}
+                    alt={isPlaying ? 'pause' : 'play'}
                   />
                 </div>
                 <div className="ml-4">
                   <Image
-                    src={"./backIcon.png"}
+                    src={'/backIcon.png'}
                     width={30}
                     height={30}
                     alt={'back'}
@@ -237,24 +256,27 @@ export default function LiveVideo({ }) {
                 </div>
                 <div className="ml-4">
                   <Image
-                    src={"./forwardIcon.png"}
+                    src={'/forwardIcon.png'}
                     width={30}
                     height={30}
                     alt={'forward'}
                   />
                 </div>
-                <div onClick={onMuteUnmutePress} className='ml-4'>
+                <div onClick={onMuteUnmutePress} className="ml-4">
                   <Image
-                    src={isMute ? "./mute.png" : "./unmute.png"}
+                    src={isMute ? '/mute.png' : '/unmute.png'}
                     width={25}
                     height={25}
                     style={{ color: '#ffffff' }}
-                    alt={isMute ? "mute" : "unmute"}
+                    alt={isMute ? 'mute' : 'unmute'}
                   />
                 </div>
               </div>
               <div className="flex flex-row items-center">
-                <div onClick={() => setEmojisPopUp(!emojisPopUp)} className='mr-4'>
+                <div
+                  onClick={() => setEmojisPopUp(!emojisPopUp)}
+                  className="mr-4"
+                >
                   <Image
                     src={SmileImg}
                     width={25}
@@ -289,9 +311,9 @@ export default function LiveVideo({ }) {
                     alt="next icon"
                   />
                 </div> */}
-                <div className='mr-4'>
+                <div className="mr-4">
                   <Image
-                    src={"./copyIcon.png"}
+                    src={'/copyIcon.png'}
                     width={25}
                     height={25}
                     alt="copy icon"
@@ -300,7 +322,7 @@ export default function LiveVideo({ }) {
 
                 <div>
                   <Image
-                    src={"./fullScreenIcon.png"}
+                    src={'/fullScreenIcon.png'}
                     width={25}
                     height={25}
                     alt="fullscreen icon"
@@ -317,14 +339,11 @@ export default function LiveVideo({ }) {
 
 const ImgBlock = ({ imgSrc, addEmoji }) => {
   const handleClickEmoji = () => {
-    addEmoji(imgSrc)
-  }
-  return <div className="cursor-pointer" onClick={handleClickEmoji}>
-    <Image
-      src={imgSrc}
-      width={25}
-      height={25}
-      className="cursor-pointer"
-    />
-  </div>
-}
+    addEmoji(imgSrc);
+  };
+  return (
+    <div className="cursor-pointer" onClick={handleClickEmoji}>
+      <Image src={imgSrc} width={25} height={25} className="cursor-pointer" />
+    </div>
+  );
+};
